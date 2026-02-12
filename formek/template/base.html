@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Formek{% endblock %}</title>
+    <link rel="stylesheet" href="% static 'apkaFormek/formek/static/main.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Formek</h1>
+        <img src="{% static 'apkaFormek/formek/static/grafika/formek.png' %}" alt="Grafika żółwia w formie rysunkowej">
+        
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="foot">
+        <p>&copy; 2026 <strong>Formek</strong>. Wszelkie prawa zastrzeżone.</p>
+        <p>Autor: <strong>Jarosław Hyżyk</strong></p>
+    </div>
+</body>
+</html>

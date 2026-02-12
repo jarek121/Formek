@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Logowanie - Formek{% endblock %}
+
+{% block content %}
+    <h3>Najszybszy żółw w świecie formularzy.</h3>
+    
+    <div class="logform form-row">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            
+            <input id="btn" type="submit" value="Zaloguj się" class="btn btn-primary">
+        </form>
+        
+        <br>
+        <div class="links">
+            <a href="{% url 'register' %}">Poznaj Formka i jego formularze - utwórz konto</a>
+            <br><br>
+            <a href="{% url 'password_reset' %}">Problem z wejściem do skorupy? – Zresetuj swoje hasło</a>
+        </div>
+    </div>
+{% endblock %}
