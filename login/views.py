@@ -13,9 +13,9 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return Http_Response('Zostałeś zalogowany')
+                    return HttpResponse('Zostałeś zalogowany')
                 else: 
-                    return Http_Response('Konto zablokowane')
+                    return HttpResponse('Konto zablokowane')
             else:
                 return HttpResponse('Niepoprawne dane')
     else:
