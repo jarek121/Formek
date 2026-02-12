@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['192.168.201.17', '127.0.0.1', 'localhost']
 
 INSTALLED_APPS = [
     'crispy_forms',
+    'crispy_bootstrap5',
     'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -124,3 +125,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

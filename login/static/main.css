@@ -1,5 +1,5 @@
 body {
-    background-image: url("/grafika/white-waves.webp");
+    background-image: url("grafika/white-waves.webp");
     font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -27,7 +27,7 @@ h1, h3 {
     text-transform: uppercase;
 }
 
-input[type="email"],
+input[type="text"],
 input[type="password"] {
     padding-top: 7px;
     background-color: #ffffff;
@@ -38,7 +38,7 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
-input[type="email"],
+input[type="text"],
 input[type="password"],
 input[type="text"]:focus {
     color: #000;
@@ -55,6 +55,7 @@ input[type="text"]:focus {
     font-size: 20px;
     cursor: pointer;
     padding: 10px;
+    margin-top: 10px;
 }
 
 #btn:hover {
