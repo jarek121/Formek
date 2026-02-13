@@ -1,0 +1,10 @@
+asgiref==3.11.0
+cffi @ file:///home/task_176183212682869/conda-bld/cffi_1761832772612/work
+crispy-bootstrap5 @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_crispy-bootstrap5_1759695987/work
+cryptography @ file:///home/task_177037924260330/croot/cryptography-split_1770379793037/work
+Django @ file:///home/task_176432919713519/conda-bld/django_1764329208954/work
+django-crispy-forms @ file:///home/conda/feedstock_root/build_artifacts/django-crispy-forms_1762481635210/work
+mysqlclient @ file:///work/buildout/croot/mysqlclient_1759978312777/work
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+PyMySQL @ file:///work/buildout/croot/pymysql_1759980607660/work
+sqlparse==0.5.5
