@@ -20,4 +20,4 @@ def user_login(request):
                 return HttpResponse('Niepoprawne dane')
     else:
         form = LoginForm()
-        return render(request, 'login/login.html', {'form': form})       
+        return render(request, 'registration/login.html', {'form': form})       
