@@ -1,5 +1,5 @@
 body {
-    background-image: url("/grafika/white-waves.webp");
+    background-image: url("grafika/white-waves.webp");
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -163,18 +163,22 @@ input[type="date"] {
 }
 
 
-.exit-link {
-    font-weight: bold;
-    color: #555; 
-    margin-left: 20px; 
-    border-left: 1px solid #ccc;
-}
+/* EXIT-LINK */
 
 .exit-link:hover {
-    color: #a83232;
-    text-decoration: none;
+    background-color: #FFF;
+    color: red;
+    cursor: pointer;
 }
 
+.exit-link{
+    background: #126d34; 
+    border: none; 
+    color: #FFF; 
+    cursor: pointer; 
+    font: inherit;
+    padding: 0;
+}
 
 /* GITHUB ICON */
 
@@ -193,5 +197,152 @@ a[aria-label*="GitHub"]:hover {
 
 a[aria-label*="GitHub"]:focus {
     outline: 3px solid #FFF;
-    /* outline-offset: 4px; */
+}
+
+/* KARTY i IKONY SKORUP */
+
+.skorupy-grid {
+    display: grid;
+    /* Tworzy kolumny o szerokości min 300px, dopasowując je do ekranu */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Pojedyncza karta skorupy */
+.skorupa-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.2s ease;
+}
+
+/* Lekki efekt po najechaniu myszką */
+.skorupa-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* Info o dacie i statusie */
+.skorupa-info h3 {
+    margin: 15px 0 5px 0;
+    color: #2c3e50;
+}
+
+.date-info, .expiry-info {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    margin: 2px 0;
+}
+
+.expiry-info {
+    color: #e67e22; /* Pomarańczowy dla daty wygaśnięcia */
+    font-weight: bold;
+}
+
+/* Sekcja przycisków akcji */
+.skorupa-akcje {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    color: #34495e;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-action:hover {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+/* Licznik odpowiedzi na dole */
+.stats {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    width: 100%;
+    color: #95a5a6;
+}
+
+/* Ukrycie tekstów pomocniczych dla oka, ale zostawienie dla czytnika */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Edycja Formularz */
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.field-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.field-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.field-group input,
+.field-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.btn-save {
+    background: #27ae60;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cancel {
+    color: #7f8c8d;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.error-msg {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 5px;
 }

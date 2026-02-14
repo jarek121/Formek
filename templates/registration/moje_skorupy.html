@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formek - Moje skorupy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'skorupy.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header id="menu">
+            <nav aria-label="Menu główne">
+                <ul>
+                    <li><a href="{% url 'dashboard' %}">Strona główna</a></li>
+                    <li><a href="{% url 'lista-skorup' %}">Moje skorupy</a></li>
+                    <li><a href="#" aria-label="Moje Legowisko - Edycja profilu i ustawienia">Moje Legowisko</a></li>
+                    <li>
+                            {% if request.user.is_authenticated %}
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="exit-link">
+                                    Opuść Formka
+                                </button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'login' %}">Zaloguj</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Wszystkie skorupy</h1>
+            
+            <div class="form-icon">
+                <img src="{% static 'grafika/skoruparb2.png' %}" alt="" role="presentation">
+            </div>
+
+            <section aria-labelledby="lista-naglowek">
+                <h2 id="lista-naglowek" class="visually-hidden">Twoja lista skorup</h2>
+                
+                <div class="skorupy-grid">
+                    <p>DEBUG: Liczba ankiet w systemie: {{ skorupy|length }}</p>
+                    {% for skorupa in skorupy %}
+                        <div class="skorupa-card">
+                            <button type="button" 
+                                    class="ikona-box" 
+                                    onclick="location.href='{% url 'detale-skorupy' skorupa.id %}'"
+                                    aria-label="Szczegóły skorupy: {{ skorupa.tytul }}">
+                                <span>{{ skorupa.tytul|slice:":2"|upper }}</span>
+                            </button>
+
+                            <div class="skorupa-info">
+                                <h3>{{ skorupa.tytul }}</h3>
+                                <p class="date-info">Utworzono: {{ skorupa.data_utworzenia|date:"d.m.Y" }}</p>
+                                
+                                {% if skorupa.data_wygasniecia %}
+                                    <p class="expiry-info">Wygasa: {{ skorupa.data_wygasniecia|date:"d.m.Y H:i" }}</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="skorupa-akcje">
+                                <a href="{% url 'edycja-skorupy' skorupa.id %}" class="btn-action" title="Edytuj">
+                                    <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+                                    <span class="visually-hidden">Edytuj {{ skorupa.tytul }}</span>
+                                </a>
+
+                                <button onclick="kopiujLink('{{ skorupa.id }}')" class="btn-action" title="Udostępnij">
+                                    <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+                                    <span class="visually-hidden">Udostępnij link do {{ skorupa.tytul }}</span>
+                                </button>
+                            </div>
+
+                            <div class="stats">
+                                <small>Odpowiedzi: {{ skorupa.odpowiedzi.count|default:"0" }}</small>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="empty-state">
+                            <p role="status">Nie masz jeszcze żadnych skorup. Dodaj nową, aby zacząć!</p>
+                            <a href="{% url 'nowa-skorupa' %}" class="btn-main">Stwórz pierwszą skorupę</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+
+        <footer id="foot">
+            <p>&copy; 2026 <strong>Formek</strong>. Wszelkie prawa zastrzeżone.</p>
+            <p>Autor: <strong>Jarosław Hyżyk</strong></p>
+        </footer>
+    </div>
+
+    <script>
+    function kopiujLink(id) {
+        // Generujemy pełny adres do wypełniania ankiety
+        const url = window.location.origin + '/skorupa/' + id + '/wypelnij/';
+        
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Link do udostępnienia skopiowany do schowka:\n' + url);
+        }).catch(err => {
+            console.error('Błąd kopiowania:', err);
+            alert('Nie udało się skopiować linku. Spróbuj zaznaczyć go ręcznie.');
+        });
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tytul_strony }} - Formek</title>
+    <link rel="stylesheet" href="{% static 'skorupy.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header id="menu">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'lista-skorup' %}">← Powrót do listy</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="form-container">
+            <h1>{{ tytul_strony }}</h1>
+            
+            <form method="post" class="skorupa-form">
+                {% csrf_token %}
+                
+                <div class="form-fields">
+                    {% for field in form %}
+                        <div class="field-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small class="help-text">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% if field.errors %}
+                                <div class="error-msg">
+                                    {{ field.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Zapisz skorupę</button>
+                    <a href="{% url 'lista-skorup' %}" class="btn-cancel">Anuluj</a>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
