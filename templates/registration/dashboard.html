@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -5,27 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formek - Panel admina</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="/style/dashboard.css">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
 </head>
 <body>
     <div class="container">
         <header id="menu">
             <nav aria-label="Menu główne">
                 <ul>
-                    <li><a href="#">Strona główna</a></li>
+                    {# Sprawdzamy sekcję, żeby wiedzieć co jest aktywne #}
+                    <li class="{% if section == 'dashboard' %}active{% endif %}">
+                        <a href="{% url 'dashboard' %}">Strona główna</a>
+                    </li>
                     <li><a href="#">Moje skorupy</a></li>
-                    <li><a href="#" aria-label="Moje Legowisko - Edycja profilu i ustawienia">Moje Legowisko</a></li>
-                    <li><a href="#" class="exit-link">Opuść Formka</a></li>
+                    <li><a href="#">Moje Legowisko</a></li>
+                    <li>
+                        {% if request.user.is_authenticated %}
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="exit-link">
+                                    Opuść Formka
+                                </button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'login' %}">Zaloguj</a>
+                        {% endif %}
+                    </li>
                 </ul>
             </nav>
         </header>
+
         <main>
             <h1>Panel Formka</h1>
-
-            <p>Twoje formularze i dane w jednym miejscu</p>
+            {% if request.user.is_authenticated %}
+                <p>Witaj, <strong>{{ request.user.first_name|default:request.user.username }}</strong>! Twoje formularze i dane w jednym miejscu.</p>
+            {% endif %}
 
             <div class="add_button" role="group" aria-label="Dostępne akcje panelu">
-
                 <button type="button" class="ikona-box">
                     <i class="fa-solid fa-plus" aria-hidden="true"></i>
                     <span>Dodaj nową skorupę</span>

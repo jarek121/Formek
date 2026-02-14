@@ -7,12 +7,25 @@
     <h3>Najszybszy żółw w świecie formularzy.</h3>
     
     <div class="logform form-row">
-        <form method="post">
+        <form method="post" novalidate>
             {% csrf_token %}
-            {{ form|crispy }}
+            {% comment %} {{ form|crispy }} {% endcomment %}
+                <div class="form-row">
+                <label for="{{ form.username.id_for_label }}">nazwa żółwia</label>
+                {{ form.username }}
+            </div>
+            {% comment %} <div class="form-row">
+            <label for="id_username">Imię Żółwia</label>
+            <input type="text" name="username" id="id_username" 
+            required aria-required="" 
+            aria-invalid="false">
+            </div> {% endcomment %}
+            <div class="form-row">
+                <label for="{{ form.password.id_for_label }}">Hasło żółwia</label>
+                {{ form.password }}
+            </div>
             <input id="btn" type="submit" value="Zaloguj się" class="btn btn-primary">
         </form>
-        
         <br>
         <div class="links">
             {% comment %} <a href="{% url 'register' %}">Poznaj Formka i jego formularze - utwórz konto</a>

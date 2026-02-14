@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formek - Panel admina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header id="menu">
+            <nav aria-label="Menu główne">
+                <ul>
+                    {# Sprawdzamy sekcję, żeby wiedzieć co jest aktywne #}
+                    <li class="{% if section == 'dashboard' %}active{% endif %}">
+                        <a href="{% url 'dashboard' %}">Strona główna</a>
+                    </li>
+                    <li><a href="#">Moje skorupy</a></li>
+                    <li><a href="#">Moje Legowisko</a></li>
+                    <li>
+                        {% if request.user.is_authenticated %}
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="exit-link">
+                                    Opuść Formka
+                                </button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'login' %}">Zaloguj</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Panel Formka</h1>
+            {% if request.user.is_authenticated %}
+                <p>Zostałeś wylogowany, <strong>{{ request.user.first_name|default:request.user.username }}</strong>! .</p>
+            {% endif %}
+
+            {% comment %} <div class="add_button" role="group" aria-label="Dostępne akcje panelu">
+                <button type="button" class="ikona-box">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    <span>Dodaj nową skorupę</span>
+                </button>
+
+                <button type="button" class="ikona-box">
+                    <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                    <span>Moje skorupy</span>
+                </button>
+
+                <button type="button" class="ikona-box">
+                    <i class="fa-solid fa-box-archive" aria-hidden="true"></i>
+                    <span>Poprzednie skorupy</span>
+                </button>
+
+                <button type="button" class="ikona-box">
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                    <span>Żółwiki i hasła</span>
+                </button>
+
+                <button type="button" class="ikona-box">
+                    <i class="fa-solid fa-square-poll-horizontal" aria-hidden="true"></i>
+                    <span>Postępy żółwi i żółwików</span>
+                </button>
+
+                <button type="button" class="ikona-box">
+                    <i class="fa-solid fa-circle-user" aria-hidden="true"></i>
+                    <span>Moje legowisko</span>
+                </button>
+            </div> {% endcomment %}
+        </main>
+
+        <footer id="foot">
+            <p>&copy; 2026 <strong>Formek</strong>. Wszelkie prawa zastrzeżone.</p>
+            <p>Autor: <strong>Jarosław Hyżyk</strong></p>
+        </footer>
+    </div>
+</body>
+</html>

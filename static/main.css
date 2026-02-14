@@ -95,6 +95,48 @@ ul > li {
     list-style-type: none;
 }
 
+/* Form */
 
+form {
+    display: flex;
+    flex-direction: column; /* Układamy elementy w pionie */
+    align-items: center;    /* Środkujemy elementy w poziomie */
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
 
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 400px; /* Ograniczamy szerokość, żeby nie był za chudy */
+}
 
+/* Wyrównanie napisów do prawej, żeby były blisko pól */
+.form-row label {
+    flex: 0 0 140px; 
+    text-align: right;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+/* Pole tekstowe */
+.form-row input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #16833e;
+    border-radius: 4px;
+}
+
+/* Przycisk logowania na środku */
+form button[type="submit"] {
+    margin-top: 10px;
+    padding: 10px 25px;
+    background-color: #28a745; /* Możesz dać kolor "żółwiowy" */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
