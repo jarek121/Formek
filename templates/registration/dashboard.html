@@ -22,7 +22,7 @@
                         {% if request.user.is_authenticated %}
                             <form action="{% url 'logout' %}" method="post" style="display: inline;">
                                 {% csrf_token %}
-                                <button type="submit" class="exit-link" style="background: none; border: none; cursor: pointer; font: inherit;">
+                                <button type="submit" class="exit-link">
                                     Opuść Formka
                                 </button>
                             </form>
@@ -42,35 +42,35 @@
 
             <div class="add_button" role="group" aria-label="Dostępne akcje panelu">
                 
-                <a href="{% url 'nowa-skorupa' %}" class="ikona-box" style="text-decoration: none;">
+                <a {% comment %} href="{% url 'nowa-skorupa' %}"{% endcomment %} class="ikona-box"> 
                     <i class="fa-solid fa-plus" aria-hidden="true"></i>
                     <span>Dodaj nową skorupę</span>
                 </a>
 
-                <a href="{% url 'lista-skorup' %}" class="ikona-box" style="text-decoration: none;">
+                <a {% comment %}href="{% url 'lista-skorup' %}"{% endcomment %} class="ikona-box">
                     <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
                     <span>Moje skorupy</span>
                 </a>
 
-                <button type="button" class="ikona-box">
-                    <i class="fa-solid fa-box-archive" aria-hidden="true"></i>
-                    <span>Poprzednie skorupy</span>
-                </button>
+                        <a {% comment %}href="{% url 'archiwum_skorup' %}"{% endcomment %} class="ikona-box">
+                        <i class="fa-solid fa-box-archive" aria-hidden="true"></i>
+                        <span>Poprzednie skorupy</span>
+                    </a>
 
-                <button type="button" class="ikona-box">
+                <a {% comment %}href="{% url 'hasla_zolwiki' %}"{% endcomment %} class="ikona-box">
                     <i class="fa-solid fa-lock" aria-hidden="true"></i>
                     <span>Żółwiki i hasła</span>
-                </button>
+                </a>
 
-                <button type="button" class="ikona-box">
+                <a {% comment %}href="{% url 'postepy_zolwi' %}"{% endcomment %} class="ikona-box">
                     <i class="fa-solid fa-square-poll-horizontal" aria-hidden="true"></i>
                     <span>Postępy żółwi i żółwików</span>
-                </button>
+                </a>
 
-                <button type="button" class="ikona-box">
+                <a {% comment %}href="{% url 'profil_uzytkownika' %}" {% endcomment %}class="ikona-box">
                     <i class="fa-solid fa-circle-user" aria-hidden="true"></i>
                     <span>Moje legowisko</span>
-                </button>
+                </a>
             </div>
         </main>
 

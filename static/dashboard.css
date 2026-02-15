@@ -47,11 +47,19 @@ button {
 }
 
 
+.ikona-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease; /* Płynne przejście koloru */
+    color: #FFF;
+    background-color: #126d34;
+}
+
+
 .ikona-box i {
     font-size: 55px;
-    color: #2e4d2e;
     margin-bottom: 12px;
-    color: #FFF;
 }
 
 
@@ -63,14 +71,13 @@ button {
 
 
 .ikona-box:hover {
-    background-color: #126d34;
-    color: #FFF;
-    font-style: italic;
+    background-color: #FFF; 
+    color: #126d34; 
+    cursor: pointer;
+    border-radius: 8px; 
 }
 
-.ikona-box:hover i {
-    color: #FFF;
-}
+
 
 
 a {
