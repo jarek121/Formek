@@ -15,4 +15,5 @@ urlpatterns = [
     # NOWOŚĆ: Link dla biura Dorotki (do wypełniania)
     path('skorupa/<int:id_skorupy>/wypelnij/', views.wypelnij_skorupe, name='wypelnij-skorupe'),
     path('nowa/', views.nowa_skorupa, name='nowa-skorupa'),
+    path('skorupa/<int:pk>/usun/', views.usun_skorupe, name='usun-skorupe'),
 ]

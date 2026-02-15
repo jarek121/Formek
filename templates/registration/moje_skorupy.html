@@ -33,16 +33,11 @@
         </header>
         <main>
             <h1>Wszystkie skorupy</h1>
-            
-            <div class="form-icon">
-                <img src="{% static 'grafika/skoruparb2.png' %}" alt="" role="presentation">
-            </div>
 
             <section aria-labelledby="lista-naglowek">
                 <h2 id="lista-naglowek" class="visually-hidden">Twoja lista skorup</h2>
                 
                 <div class="skorupy-grid">
-                    <p>DEBUG: Liczba ankiet w systemie: {{ skorupy|length }}</p>
                     {% for skorupa in skorupy %}
                         <div class="skorupa-card">
                             <button type="button" 
@@ -71,8 +66,15 @@
                                     <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
                                     <span class="visually-hidden">Udostępnij link do {{ skorupa.tytul }}</span>
                                 </button>
-                            </div>
 
+                            <form action="{% url 'usun-skorupe' skorupa.id %}" method="post" onsubmit="return confirm('Czy na pewno chcesz usunąć tę skorupę?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-action btn-delete" title="Usuń">
+                            <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                            <span class="visually-hidden">Usuń {{ skorupa.tytul }}</span>
+                        </button>
+                    </form>
+                            </div>
                             <div class="stats">
                                 <small>Odpowiedzi: {{ skorupa.odpowiedzi.count|default:"0" }}</small>
                             </div>

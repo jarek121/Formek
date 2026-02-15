@@ -25,3 +25,21 @@ class AnkietaSkorupy(models.Model):
         if self.data_wygasniecia and timezone.now() > self.data_wygasniecia:
             return False
         return self.czy_aktywna
+    
+    
+class Skorupa(models.Model):
+    uzytkownik = models.ForeignKey(User, on_delete=models.CASCADE, related_name='skorupy')
+    tytul = models.CharField(max_length=200, verbose_name="Tytuł skorupy")
+    data_utworzenia = models.DateTimeField(auto_now_add=True)
+    data_wygasniecia = models.DateTimeField(null=True, blank=True)
+    
+    # Dodatkowe pola, które mogą Ci się przydać
+    opis = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.tytul
+
+    class Meta:
+        verbose_name = "Skorupa"
+        verbose_name_plural = "Skorupy"
+        ordering = ['-data_utworzenia'] # Najnowsze będą na górze

@@ -7,9 +7,12 @@ body {
 .container {
     background-color: #FFF;
     width: 950px;
-    height: 850px;
+    min-height: 850px;
     text-align: center;
     margin: auto;
+    box-sizing: border-box;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 
@@ -171,8 +174,9 @@ input[type="date"] {
 
 /* 2. Ikona w środku (zawsze widoczna) */
 .ikona-box i {
-    font-size: 55px;
-    color: #2e4d2e;
+    font-size: 30px;
+    /* color: #2e4d2e; */
+    color: #FFF;
     margin-bottom: 12px;
 }
 
@@ -180,7 +184,8 @@ input[type="date"] {
 .ikona-box span {
     font-size: 1.1em;
     font-weight: 600;
-    color: #2e4d2e;
+    /* color: #2e4d2e; */
+    color: #FFF;
     text-align: center;
 }
 
@@ -189,6 +194,7 @@ input[type="date"] {
     background-color: #126d34; 
     cursor: pointer;
     border-radius: 8px; 
+    color:#FFF;
 }
 
 /* 5. Co się dzieje z zawartością po najechaniu na pudełko */
@@ -196,10 +202,6 @@ input[type="date"] {
 .ikona-box:hover span {
     color: #FFF;
 }
-
-
-
-
 
 /* EXIT-LINK */
 
@@ -249,7 +251,7 @@ a[aria-label*="GitHub"]:focus {
 
 /* Pojedyncza karta skorupy */
 .skorupa-card {
-    background: #fff;
+    background-color: #126d34;
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -259,28 +261,34 @@ a[aria-label*="GitHub"]:focus {
     text-align: center;
     border: 1px solid #e0e0e0;
     transition: transform 0.2s ease;
+    color: #FFF
 }
 
-/* Lekki efekt po najechaniu myszką */
-.skorupa-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+.skorupa-card:hover,
+.skorupa-card:hover .expiry-info,
+.skorupa-card:hover h3,
+.skorupa-card:hover .date-info,
+.skorupa-card:hover .stats,
+.skorupa-card:hover small {
+    background-color: #FFF;
+    color: #000;
 }
 
 /* Info o dacie i statusie */
 .skorupa-info h3 {
     margin: 15px 0 5px 0;
-    color: #2c3e50;
+    color: #FFF;
 }
+
 
 .date-info, .expiry-info {
     font-size: 0.85rem;
-    color: #7f8c8d;
+    color: #FFF;
     margin: 2px 0;
 }
 
 .expiry-info {
-    color: #e67e22; /* Pomarańczowy dla daty wygaśnięcia */
+    color: #FFD700;
     font-weight: bold;
 }
 
@@ -307,9 +315,20 @@ a[aria-label*="GitHub"]:focus {
 }
 
 .btn-action:hover {
-    background: #3498db;
-    color: white;
-    border-color: #3498db;
+    background: #16833e;
+    color: #FFF;
+    border-color: #16833e;
+}
+
+/* USUŃ */
+.btn-delete {
+    color: #c0392b;
+}
+
+.btn-delete:hover {
+    background: #e74c3c !important;
+    color: white !important;
+    border-color: #e74c3c !important;
 }
 
 /* Licznik odpowiedzi na dole */
@@ -318,7 +337,7 @@ a[aria-label*="GitHub"]:focus {
     padding-top: 10px;
     border-top: 1px solid #eee;
     width: 100%;
-    color: #95a5a6;
+    color: #FFF;
 }
 
 /* Ukrycie tekstów pomocniczych dla oka, ale zostawienie dla czytnika */
@@ -383,4 +402,60 @@ a[aria-label*="GitHub"]:focus {
     color: #e74c3c;
     font-size: 0.8rem;
     margin-top: 5px;
+}
+
+/* STYLE dla PUSTEJ STRONY SKORUP */
+.empty-state {
+    grid-column: 1 / -1; 
+    padding: 50px;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border: 2px dashed #ccc;
+}
+
+/* KAFELKI ŚRODKOWANIE */
+
+.skorupa-card .ikona-box {
+    background-color: #16833e;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.skorupa-card .ikona-box:hover {
+    background-color: #126d34;
+    transform: scale(1.1);
+}
+
+/* Stylizacja dla pustego stanu, gdy nie ma skorup */
+.empty-state {
+    grid-column: 1 / -1; 
+    padding: 60px 20px;
+    background: #fdfdfd;
+    border: 2px dashed #d1dbd1;
+    border-radius: 15px;
+    text-align: center;
+    color: #7f8c8d;
+}
+
+.btn-main {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background-color: #16833e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
 }

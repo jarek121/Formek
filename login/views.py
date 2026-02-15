@@ -1,10 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-# from django.http import HttpResponse
-# from .forms import LoginForm
 from .models import AnkietaSkorupy
 from .forms import AnkietaForm
+from django.views.decorators.http import require_POST
+from .models import Skorupa
 
 
 #Widok dashboard
@@ -62,3 +61,13 @@ def nowa_skorupa(request):
         form = AnkietaForm()
     
     return render(request, 'registration/formularz_edycji.html', {'form': form, 'tytul_strony': 'Nowa Skorupa'})
+
+
+@require_POST
+@login_required # Warto dodać, żeby tylko zalogowani mogli usuwać
+def usun_skorupe(request, pk):
+    # Używamy AnkietaSkorupy, bo tak nazywa się Twój główny model
+    # Używamy pola 'tworca', bo tak zdefiniowałeś użytkownika w tym modelu
+    AnkietaSkorupy.objects.filter(id=pk, tworca=request.user).delete()
+    
+    return redirect('lista-skorup')
