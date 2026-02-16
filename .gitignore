@@ -3,7 +3,7 @@ cred.cfg
 __pycache__/
 *.py[codz]
 *$py.class
-.vscode
+.vscode/
 # C extensions
 *.so
 
