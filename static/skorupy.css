@@ -383,8 +383,8 @@ a[aria-label*="GitHub"]:focus {
 }
 
 .btn-save {
-    background: #2e7d32;
-    color: white;
+    background-color: #1eae53;
+    color: #FFF;
     padding: 12px 25px;
     border: none;
     border-radius: 6px;
@@ -392,8 +392,13 @@ a[aria-label*="GitHub"]:focus {
     font-weight: bold;
 }
 
+.btn-save:hover {
+    background-color: #16833e;
+    color: #FFF;
+}
+
 .btn-cancel {
-    color: #7f8c8d;
+    color: #000;
     text-decoration: none;
     margin-left: 15px;
 }
@@ -446,16 +451,21 @@ a[aria-label*="GitHub"]:focus {
     border: 2px dashed #d1dbd1;
     border-radius: 15px;
     text-align: center;
-    color: #7f8c8d;
+    color: #000;
 }
 
 .btn-main {
     display: inline-block;
     margin-top: 15px;
     padding: 12px 25px;
-    background-color: #16833e;
-    color: white;
+    background-color: #1eae53;
+    color: #FFF;
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
+}
+.btn-main:hover {
+    background-color:#126d34;
+    color: #FFF;
+    text-decoration: none;
 }
